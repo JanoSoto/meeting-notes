@@ -13,7 +13,7 @@ class Note extends React.Component {
   }
 
   deleteHandler = () => {
-    console.log('click a eliminar');
+    this.props.deleteNote(this.props.id);
   }
 
   updateHandler = (e) => {

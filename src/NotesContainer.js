@@ -6,7 +6,8 @@ class NotesContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: []
+      notes: [],
+      deleted_notes: []
     }
   }
 
@@ -34,6 +35,15 @@ class NotesContainer extends React.Component {
     });
   }
 
+  deleteNote = (id) => {
+    const note_to_delete = this.state.notes.find(n => n.id == id);
+    const filtered_notes = this.state.notes.filter(note => note.id != note_to_delete.id);
+    this.setState({
+      notes: filtered_notes,
+      deleted_notes: this.state.deleted_notes.concat(note_to_delete)
+    });
+  }
+
   render() {
     const notes = this.state.notes.map((note) => {
       return <Note key={note.id}
@@ -44,6 +54,7 @@ class NotesContainer extends React.Component {
                    categories={this.props.categories}
                    participants={this.props.participants}
                    updateNote={this.updateNote}
+                   deleteNote={this.deleteNote}
               /> 
     });
     return (
