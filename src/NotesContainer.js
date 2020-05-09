@@ -11,6 +11,7 @@ class NotesContainer extends React.Component {
   }
 
   addNote = (data) => {
+    console.log(data);
     this.setState({
       notes: this.state.notes.concat([data])
     });
@@ -19,6 +20,7 @@ class NotesContainer extends React.Component {
   render() {
     const notes = this.state.notes.map((note) => {
       return <Note key={note.id}
+                   id={note.id}
                    summary={note.summary}
                    category={note.category}
                    responsable={note.responsable}
@@ -33,7 +35,25 @@ class NotesContainer extends React.Component {
           clean={true}
         />
         <div className="notes-container">
-          {this.state.notes.length > 0 ? notes : <p>No hay notas</p>}
+          <h2>Notas</h2>
+          {
+            this.state.notes.length > 0 ? 
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Resumen</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Responsable</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {notes.reverse()}
+                </tbody>
+              </table>
+              : 
+              <p className="alert alert-info">No hay notas</p>
+          }
         </div>
       </div>
     )

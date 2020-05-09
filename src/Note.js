@@ -2,11 +2,12 @@ import React from 'react';
 
 function Note(props) {
   return (
-    <div className="note">
-      <p className="summary">{props.summary}</p>
-      <p className="responsable">{props.responsable}</p>
-      <p className="category">{props.category}</p>
-    </div>
+    <tr className="note">
+      <th scope="row">{props.id}</th>
+      <td className="summary">{props.summary}</td>
+      <td className="category">{props.category}</td>
+      <td className="responsable">{props.responsable}</td>
+    </tr>
   )
 }
 

@@ -8,7 +8,7 @@ class NewNote extends React.Component {
       category: '',
       responsable: '',
       emptyInput: false,
-      counter: 0
+      counter: 1
     }
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -54,10 +54,11 @@ class NewNote extends React.Component {
   render() {
     const categories = this.props.categories.map((category) => {
       return <option 
-              key={category} 
-              value={category}
+              key={category.name} 
+              value={category.name}
+              style={{color: category.color}}
              >
-               {category}
+               {category.name}
              </option>
     });
     const participants = this.props.participants.map((participant) => {
@@ -69,48 +70,58 @@ class NewNote extends React.Component {
              </option>
     });
     return (
-      <div>
+      <div className="new-note-container">
+        <h2>Nueva nota</h2>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label>
-              Resumen
+          <div className="form-row">
+            <div className="col-12">
+              <label>
+                Resumen
+              </label>
               <input 
                 type="text" 
                 name="summary" 
                 onChange={this.handleInputChange}
-                autoFocus={true}  
+                autoFocus={true}
+                className="form-control"
               />
-            </label>
-          </div>
-          <div className="form-group">
-            <label>
-              Tipo
+            </div>
+            <div className="col-5">
+              <label>
+                Tipo
+              </label>
               <select 
                 name="category" 
                 onChange={this.handleInputChange}
-                defaultValue="blank_option"  
+                defaultValue="blank_option"
+                className="form-control"
               >
                 <option disabled value="blank_option">Elije un tipo de nota</option>
                 {categories}
               </select>
-            </label>
-          </div>
-          <div className="form-group">
-            <label>
-              Resumen
+            </div>
+            <div className="col-5">
+              <label>
+                Responsable
+              </label>
               <select 
                 name="responsable" 
                 onChange={this.handleInputChange}
                 defaultValue="blank_option"
+                className="form-control"
               >
                 <option disabled value="blank_option">Elije un responsable</option>
                 {participants}
               </select>
-            </label>
-          </div>
-          <div className="form-group">
-            {this.state.emptyInput ? <p>Faltan campos por completar</p> : ''}
-            <input type="submit" value="Agregar" />
+            </div>
+            <div className="col-2">
+              {this.state.emptyInput ? <p>Faltan campos por completar</p> : ''}
+              <input 
+                type="submit" 
+                value="Agregar" 
+                className="btn btn-primary"
+              />
+            </div>
           </div>
         </form>
       </div>

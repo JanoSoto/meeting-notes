@@ -1,0 +1,30 @@
+body {
+  padding: 30px;
+}
+
+.new-note-container {
+  form {
+    .form-row {
+      align-items: flex-end;
+    }
+  }
+}
+
+.notes-container {
+  padding-top: 30px;
+}
+
+.meeting-data-container {
+  display: flex;
+  align-items: flex-end;
+
+  div {
+    margin-right: 30px;
+    margin-bottom: 15px;
+
+    h1, h3, p {
+      margin: 0;
+      line-height: 1;
+    }
+  }
+}
