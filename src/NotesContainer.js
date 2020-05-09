@@ -11,9 +11,26 @@ class NotesContainer extends React.Component {
   }
 
   addNote = (data) => {
-    console.log(data);
     this.setState({
       notes: this.state.notes.concat([data])
+    });
+  }
+
+  compareNotes = (a, b) => {
+    if (a.id < b.id) {
+      return -1;
+    }
+    if (a.id > b.id) {
+      return 1;
+    }
+    return 0;
+  }
+
+  updateNote = (note) => {
+    const updated_note = this.state.notes.find(n => n.id == note.id);
+    const filtered_notes = this.state.notes.filter(note => note.id != updated_note.id);
+    this.setState({
+      notes: filtered_notes.concat(note).sort(this.compareNotes).reverse()
     });
   }
 
@@ -24,6 +41,9 @@ class NotesContainer extends React.Component {
                    summary={note.summary}
                    category={note.category}
                    responsable={note.responsable}
+                   categories={this.props.categories}
+                   participants={this.props.participants}
+                   updateNote={this.updateNote}
               /> 
     });
     return (
@@ -34,27 +54,22 @@ class NotesContainer extends React.Component {
           addNote={this.addNote}
           clean={true}
         />
-        <div className="notes-container">
-          <h2>Notas</h2>
-          {
-            this.state.notes.length > 0 ? 
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Resumen</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Responsable</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {notes.reverse()}
-                </tbody>
-              </table>
-              : 
-              <p className="alert alert-info">No hay notas</p>
-          }
-        </div>
+        {
+          this.state.notes.length > 0 ?
+            <div className="notes-container container">
+              <h2>Notas</h2>
+              <div className="row header">
+                <div className="col-1">#</div>
+                <div className="col-5">Resumen</div>
+                <div className="col-2">Tipo</div>
+                <div className="col-2">Responsable</div>
+                <div className="col-2">--</div>
+              </div>
+              {notes.reverse()}
+            </div>
+            : 
+            <p className="alert alert-info">No hay notas</p>
+        }
       </div>
     )
   }

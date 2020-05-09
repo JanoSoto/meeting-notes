@@ -12,6 +12,14 @@ body {
 
 .notes-container {
   padding-top: 30px;
+
+  .note {
+    .actions {
+      .btn {
+        margin-right: 10px;
+      }
+    }
+  }
 }
 
 .meeting-data-container {
