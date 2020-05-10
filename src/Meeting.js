@@ -4,6 +4,7 @@ import MeetingResume from './MeetingResume';
 import Participants from './Participants';
 import NotesContainer from './NotesContainer';
 import NewNote from './NewNote';
+import DeletedNotes from './DeletedNotes';
 
 class Meeting extends React.Component {
   constructor(props) {
@@ -16,7 +17,14 @@ class Meeting extends React.Component {
         'Compromiso': 0,
         'Duda': 0,
         'Desacuerdo': 0
-      }
+      },
+      show_deleted_notes: false,
+      categories: [
+        {name: 'Acuerdo', color: 'blue'}, 
+        {name: 'Compromiso', color: 'green'}, 
+        {name: 'Duda', color: 'orange'}, 
+        {name: 'Desacuerdo', color: 'red'}
+      ]
     }
   }
 
@@ -79,15 +87,52 @@ class Meeting extends React.Component {
     });
   }
 
+  toggleDeletedNotes = () => {
+    this.setState({
+      show_deleted_notes: !this.state.show_deleted_notes
+    });
+  }
+
+  deleteNotesButton = () => {
+    if (this.state.show_deleted_notes) {
+      return  <button 
+                className="btn btn-warning"
+                onClick={this.toggleDeletedNotes}
+              >
+                Ocultar notas eliminadas  <span className="badge badge-dark">
+                                    {this.state.deleted_notes.length}
+                                  </span>
+              </button>
+    }
+    else {
+      return  <button 
+                className="btn btn-warning"
+                onClick={this.toggleDeletedNotes}
+              >
+                Mostrar notas eliminadas  <span className="badge badge-dark">
+                                    {this.state.deleted_notes.length}
+                                  </span>
+              </button>
+    }
+  }
+
+  restoreNote = (id) => {
+    const note = this.state.deleted_notes.find(n => n.id == id);
+    const filtered_notes = this.state.deleted_notes.filter(n => n.id != note.id);
+    this.setState({
+      notes: this.state.notes.concat(note),
+      deleted_notes: filtered_notes,
+      resume: this.incrementCategory(note.category)
+    });
+  }
+
+  categoryColor = (category) => {
+    return this.state.categories.find(c => c.name === category).color
+  }
+
   render() {
     const meeting_name = 'Reunión de prueba';
     const participants = ['Alejandro Soto', 'Karla Rojas', 'Kyotito'];
-    const categories = [
-      {name: 'Acuerdo', color: 'blue'}, 
-      {name: 'Compromiso', color: 'green'}, 
-      {name: 'Duda', color: 'orange'}, 
-      {name: 'Desacuerdo', color: 'red'}
-    ];
     return (
       <div className="container">
         <div className="row">
@@ -100,18 +145,35 @@ class Meeting extends React.Component {
             
             <div>
               <NewNote 
-                categories={categories} 
+                categories={this.state.categories} 
                 participants={participants}
                 addNote={this.addNote}
                 clean={true}
               />
+              {
+                this.state.deleted_notes.length > 0 ? 
+                  this.deleteNotesButton()
+                  :
+                  null
+              }
+              {
+                this.state.show_deleted_notes ?
+                  <DeletedNotes
+                    notes={this.state.deleted_notes}
+                    restoreNote={this.restoreNote}
+                    categoryColor={this.categoryColor}
+                  />
+                  :
+                  <span></span>
+              }
               <NotesContainer 
                 notes={this.state.notes}
-                categories={categories} 
+                categories={this.state.categories} 
                 participants={participants}
                 addNote={this.addNote}
                 updateNote={this.updateNote}
                 deleteNote={this.deleteNote}
+                categoryColor={this.categoryColor}
               />
             </div>
           </div>

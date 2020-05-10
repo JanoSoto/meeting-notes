@@ -17,6 +17,8 @@ class NotesContainer extends React.Component {
                    participants={this.props.participants}
                    updateNote={this.props.updateNote}
                    deleteNote={this.props.deleteNote}
+                   categoryColor={this.props.categoryColor}
+                   deleted={false}
               /> 
     });
     return (
@@ -30,7 +32,7 @@ class NotesContainer extends React.Component {
                 <div className="col-5">Resumen</div>
                 <div className="col-2">Tipo</div>
                 <div className="col-2">Responsable</div>
-                <div className="col-2">--</div>
+                <div className="col-2"></div>
               </div>
               {notes.reverse()}
             </div>

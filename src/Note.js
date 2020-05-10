@@ -97,30 +97,40 @@ class Note extends React.Component {
               </div>
               <div 
                 className="col-2"
-                style={{color: this.categoryColor(this.props.category)}}
+                style={{color: this.props.categoryColor(this.props.category)}}
               >
                 {this.props.category}
               </div>
               <div className="col-2">{this.props.responsable}</div>
               <div className="col-2 actions">
-                <button 
-                  onClick={this.editHandler}
-                  className="btn btn-sm btn-info"
-                >
-                  <i className="fas fa-edit"></i>
-                </button>
-                <button 
-                  onClick={this.deleteHandler}
-                  className="btn btn-sm btn-danger"
-                >
-                  <i className="fas fa-trash-alt"></i>
-                </button>
+                {
+                  this.props.deleted ? 
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => this.props.restoreNote(this.props.id)}
+                  >
+                    <span>
+                      Deshacer <i className="fas fa-undo-alt"></i>
+                    </span>
+                  </button>
+                  :
+                  <div>
+                    <button 
+                      onClick={this.editHandler}
+                      className="btn btn-sm btn-info"
+                    >
+                      <i className="fas fa-edit"></i>
+                    </button>
+                    <button 
+                      onClick={this.deleteHandler}
+                      className="btn btn-sm btn-danger"
+                    >
+                      <i className="fas fa-trash-alt"></i>
+                    </button>
+                  </div>
+                }
               </div>
             </div>
-  }
-
-  categoryColor(category) {
-    return this.props.categories.find(c => c.name === category).color
   }
 
   render() {
