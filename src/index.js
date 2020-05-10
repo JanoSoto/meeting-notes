@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'react-mdl/extra/material.css';
+import 'react-mdl/extra/material.js';
 import './index.css.scss';
 import Meeting from './Meeting';
 import * as serviceWorker from './serviceWorker';

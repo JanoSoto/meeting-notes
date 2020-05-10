@@ -48,7 +48,7 @@ class Note extends React.Component {
     });
     return  <form onSubmit={this.updateHandler}>
               <div className="form-row note">
-                <div className="col-1">{this.props.id}</div>
+                <div className="col-1 id">{this.props.id}</div>
                 <div className="col-5">
                   <input 
                     type="text" 
@@ -91,9 +91,16 @@ class Note extends React.Component {
 
   normalNote() {
     return  <div className="row note">
-              <div className="col-1">{this.props.id}</div>
-              <div className="col-5">{this.props.summary}</div>
-              <div className="col-2">{this.props.category}</div>
+              <div className="col-1 id">{this.props.id}</div>
+              <div className="col-5">
+                {this.props.summary}
+              </div>
+              <div 
+                className="col-2"
+                style={{color: this.categoryColor(this.props.category)}}
+              >
+                {this.props.category}
+              </div>
               <div className="col-2">{this.props.responsable}</div>
               <div className="col-2 actions">
                 <button 
@@ -110,6 +117,10 @@ class Note extends React.Component {
                 </button>
               </div>
             </div>
+  }
+
+  categoryColor(category) {
+    return this.props.categories.find(c => c.name === category).color
   }
 
   render() {
