@@ -131,7 +131,8 @@ class Meeting extends React.Component {
           <div className="col-9">
             <div>
               <MeetingData 
-                meeting_name={this.props.name} 
+                name={this.props.name} 
+                target={this.props.target} 
               />
             </div>
             

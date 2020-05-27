@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Link, Switch, Route, Redirect} from 'react-router-dom';
 import Meeting from './Meeting';
+import MeetingDataForm from './MeetingDataForm';
 import Participants from './Participants';
 
 class InitialSetup extends React.Component {
@@ -8,20 +9,28 @@ class InitialSetup extends React.Component {
     super(props);
     this.state = {
       start_meeting: false,
-      participants: []
+      participants: [],
+      meeting_name: '',
+      meeting_target: '',
     };
 
     this.startMeeting = this.startMeeting.bind(this);
     this.addParticipant = this.addParticipant.bind(this);
+    this.setMeetingData = this.setMeetingData.bind(this);
   }
 
-  meeting(name, categories) {
+  meeting(categories) {
     return <Meeting 
-            name={name}
+            name={this.state.meeting_name}
+            target={this.state.meeting_target}
             categories={categories} 
             participants={this.state.participants}
             addParticipant={this.addParticipant}
            />
+  }
+
+  setMeetingData(name, target) {
+    this.setState({meeting_name: name, meeting_target: target});
   }
 
   startMeeting() {
@@ -39,8 +48,6 @@ class InitialSetup extends React.Component {
         {name: 'Duda', color: 'orange'}, 
         {name: 'Desacuerdo', color: 'red'}
       ];
-    const meeting_name = 'Reunión de prueba';
-    //const participants =['Alejandro Soto', 'Karla Rojas', 'Kyotito'];
 
     return (
       <BrowserRouter>
@@ -51,6 +58,9 @@ class InitialSetup extends React.Component {
             :
             <div className="new-meeting-container">
               <h1>Crear una nueva reunión</h1>
+              <MeetingDataForm 
+                setMeetingData={this.setMeetingData}
+              />
               <Participants 
                 participants={this.state.participants}
                 addParticipant={this.addParticipant}
@@ -65,7 +75,7 @@ class InitialSetup extends React.Component {
           }
           <Switch>
             <Route exact path='/meeting' 
-                   render={() => this.meeting(meeting_name, categories)} 
+                   render={() => this.meeting(categories)} 
             /> 
           </Switch>
         </div>

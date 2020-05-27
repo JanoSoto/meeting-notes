@@ -69,7 +69,8 @@ class NewParticipant extends React.Component {
                     Debes ingresar un nombre
                   </p>
                   : 
-                  ''}
+                  ''
+                }
               </div>
               <div className="col-2">
                 <input 
