@@ -134,17 +134,17 @@ class Note extends React.Component {
   }
 
   componentDidMount() {
-    console.log(`Nota ${this.props.id} agregada al DOM`);
+    // console.log(`Nota ${this.props.id} agregada al DOM`);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(`Nota ${this.props.id} actualizada`);
-    console.log(`Categoría anterior: ${prevProps.category}`);
-    console.log(`Categoría nueva: ${this.props.category}`);
+    // console.log(`Nota ${this.props.id} actualizada`);
+    // console.log(`Categoría anterior: ${prevProps.category}`);
+    // console.log(`Categoría nueva: ${this.props.category}`);
   }
 
   componentWillUnmount() {
-    console.log(`Nota ${this.props.id} quitada del DOM`);
+    // console.log(`Nota ${this.props.id} quitada del DOM`);
   }
 
   render() {

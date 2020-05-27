@@ -12,12 +12,10 @@ class Meeting extends React.Component {
     this.state = {
       notes: [],
       deleted_notes: [],
-      resume: {
-        'Acuerdo': 0,
-        'Compromiso': 0,
-        'Duda': 0,
-        'Desacuerdo': 0
-      },
+      resume: this.props.categories.reduce((hash, option) => {
+        hash[option.name] = 0;
+        return hash;
+      }, {}),
       show_deleted_notes: false
     }
   }
