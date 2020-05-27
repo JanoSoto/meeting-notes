@@ -4,12 +4,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
 import './index.css.scss';
-import Meeting from './Meeting';
+import InitialSetup from './InitialSetup';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Meeting />
+    <InitialSetup />
   </React.StrictMode>,
   document.getElementById('root')
 );

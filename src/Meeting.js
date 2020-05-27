@@ -18,13 +18,7 @@ class Meeting extends React.Component {
         'Duda': 0,
         'Desacuerdo': 0
       },
-      show_deleted_notes: false,
-      categories: [
-        {name: 'Acuerdo', color: 'blue'}, 
-        {name: 'Compromiso', color: 'green'}, 
-        {name: 'Duda', color: 'orange'}, 
-        {name: 'Desacuerdo', color: 'red'}
-      ]
+      show_deleted_notes: false
     }
   }
 
@@ -127,26 +121,24 @@ class Meeting extends React.Component {
   }
 
   categoryColor = (category) => {
-    return this.state.categories.find(c => c.name === category).color
+    return this.props.categories.find(c => c.name === category).color
   }
 
   render() {
-    const meeting_name = 'Reunión de prueba';
-    const participants = ['Alejandro Soto', 'Karla Rojas', 'Kyotito'];
     return (
       <div className="container">
         <div className="row">
           <div className="col-9">
             <div>
               <MeetingData 
-                meeting_name={meeting_name} 
+                meeting_name={this.props.name} 
               />
             </div>
             
             <div>
               <NewNote 
-                categories={this.state.categories} 
-                participants={participants}
+                categories={this.props.categories} 
+                participants={this.props.participants}
                 addNote={this.addNote}
                 clean={true}
               />
@@ -168,8 +160,8 @@ class Meeting extends React.Component {
               }
               <NotesContainer 
                 notes={this.state.notes}
-                categories={this.state.categories} 
-                participants={participants}
+                categories={this.props.categories} 
+                participants={this.props.participants}
                 addNote={this.addNote}
                 updateNote={this.updateNote}
                 deleteNote={this.deleteNote}
@@ -178,7 +170,7 @@ class Meeting extends React.Component {
             </div>
           </div>
           <div className="col-3">
-            <Participants participants={participants} />
+            <Participants participants={this.props.participants} />
             <MeetingResume resume={this.state.resume} />
           </div>
         </div>
