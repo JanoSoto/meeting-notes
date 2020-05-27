@@ -12,11 +12,6 @@ function MeetingData(props) {
         <p className="meeting-label">Objetivo</p>
         <h1>{props.target}</h1>
       </div>
-      
-      <div>
-        <p className="meeting-label">Fecha</p>
-        <h3>{new Date().toLocaleDateString()}</h3>
-      </div>
     </div>
   )
 }
