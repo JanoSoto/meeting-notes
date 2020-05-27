@@ -170,7 +170,10 @@ class Meeting extends React.Component {
             </div>
           </div>
           <div className="col-3">
-            <Participants participants={this.props.participants} />
+            <Participants 
+              participants={this.props.participants} 
+              addParticipant={this.props.addParticipant}
+            />
             <MeetingResume resume={this.state.resume} />
           </div>
         </div>

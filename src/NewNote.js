@@ -7,7 +7,7 @@ class NewNote extends React.Component {
       summary: '',
       category: '',
       responsable: '',
-      emptyInput: false,
+      empty_input: false,
       counter: 1
     }
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -41,13 +41,13 @@ class NewNote extends React.Component {
             responsable: form.get('responsable'),
           });
       this.setState({
-        emptyInput: false,
+        empty_input: false,
         counter: this.state.counter + 1
       });
       this.cleanForm();
     }
     else {
-      this.setState({emptyInput: true});
+      this.setState({empty_input: true});
     }
   }
 
@@ -115,7 +115,7 @@ class NewNote extends React.Component {
               </select>
             </div>
             <div className="col-2">
-              {this.state.emptyInput ? <p>Faltan campos por completar</p> : ''}
+              {this.state.empty_input ? <p>Faltan campos por completar</p> : ''}
               <input 
                 type="submit" 
                 value="Agregar" 
