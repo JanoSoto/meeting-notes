@@ -1,5 +1,6 @@
 import React from 'react';
 import MeetingData from './MeetingData';
+import MeetingResume from './MeetingResume';
 import Note from './Note';
 import Chronometer from './Chronometer';
 
@@ -28,15 +29,20 @@ class FinishedMeeting extends React.Component {
           name={this.props.name} 
           target={this.props.target} 
         />
-        <div>
-          <p>
-            <strong>Duración: </strong>
+        <div className="row">
+          <div className="col">
+            <h3>Duración</h3>
             <Chronometer 
-              startedAt={this.props.startedAt}
+              startedAt={this.props.startedAt}  
             />
-          </p>
+          </div>
+          <div className="col">
+            <h3>Cuadro resumen</h3>
+            <MeetingResume resume={this.props.resume} />
+          </div>
         </div>
         <div>
+          <h2>Notas tomadas</h2>
           {notes}
         </div>
       </div>

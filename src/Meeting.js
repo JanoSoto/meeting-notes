@@ -142,6 +142,7 @@ class Meeting extends React.Component {
              target={this.props.target}
              categoryColor={this.categoryColor}
              startedAt={this.state.started_at}
+             resume={this.state.resume}
            />
   }
 
