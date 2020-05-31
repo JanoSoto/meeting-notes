@@ -1,10 +1,12 @@
 import React from 'react';
+import {BrowserRouter, Link, Switch, Route, Redirect} from 'react-router-dom';
 import MeetingData from './MeetingData';
 import MeetingResume from './MeetingResume';
 import Participants from './Participants';
 import NotesContainer from './NotesContainer';
 import NewNote from './NewNote';
 import DeletedNotes from './DeletedNotes';
+import FinishedMeeting from './FinishedMeeting';
 
 class Meeting extends React.Component {
   constructor(props) {
@@ -16,8 +18,12 @@ class Meeting extends React.Component {
         hash[option.name] = 0;
         return hash;
       }, {}),
-      show_deleted_notes: false
+      show_deleted_notes: false,
+      finished: false
     }
+
+    this.finishMeeting = this.finishMeeting.bind(this);
+    this.renderFinishedMeeting = this.renderFinishedMeeting.bind(this);
   }
 
   incrementCategory = (category) => {
@@ -122,61 +128,92 @@ class Meeting extends React.Component {
     return this.props.categories.find(c => c.name === category).color
   }
 
+  finishMeeting = () => {
+    this.setState({finished: true});
+  }
+
+  renderFinishedMeeting() {
+    return <FinishedMeeting 
+             notes={this.state.notes} 
+             name={this.props.name}
+             target={this.props.target}
+             categoryColor={this.categoryColor}
+           />
+  }
+
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-9">
-            <div>
-              <MeetingData 
-                name={this.props.name} 
-                target={this.props.target} 
-              />
-            </div>
-            
-            <div>
-              <NewNote 
-                categories={this.props.categories} 
-                participants={this.props.participants}
-                addNote={this.addNote}
-                clean={true}
-              />
-              {
-                this.state.deleted_notes.length > 0 ? 
-                  this.deleteNotesButton()
-                  :
-                  null
-              }
-              {
-                this.state.show_deleted_notes ?
-                  <DeletedNotes
-                    notes={this.state.deleted_notes}
-                    restoreNote={this.restoreNote}
-                    categoryColor={this.categoryColor}
+      <BrowserRouter>
+        <div className="container">
+          {
+            !this.state.finished ? 
+              <div className="row">
+                <div className="col-9">
+                  <div>
+                    <MeetingData 
+                      name={this.props.name} 
+                      target={this.props.target} 
+                    />
+                  </div>
+                  
+                  <div>
+                    <NewNote 
+                      categories={this.props.categories} 
+                      participants={this.props.participants}
+                      addNote={this.addNote}
+                      clean={true}
+                    />
+                    {
+                      this.state.deleted_notes.length > 0 ? 
+                        this.deleteNotesButton()
+                        :
+                        null
+                    }
+                    {
+                      this.state.show_deleted_notes ?
+                        <DeletedNotes
+                          notes={this.state.deleted_notes}
+                          restoreNote={this.restoreNote}
+                          categoryColor={this.categoryColor}
+                        />
+                        :
+                        <span></span>
+                    }
+                    <NotesContainer 
+                      notes={this.state.notes}
+                      categories={this.props.categories} 
+                      participants={this.props.participants}
+                      addNote={this.addNote}
+                      updateNote={this.updateNote}
+                      deleteNote={this.deleteNote}
+                      categoryColor={this.categoryColor}
+                    />
+                  </div>
+                </div>
+                <div className="col-3">
+                  <Participants 
+                    participants={this.props.participants} 
+                    addParticipant={this.props.addParticipant}
                   />
-                  :
-                  <span></span>
-              }
-              <NotesContainer 
-                notes={this.state.notes}
-                categories={this.props.categories} 
-                participants={this.props.participants}
-                addNote={this.addNote}
-                updateNote={this.updateNote}
-                deleteNote={this.deleteNote}
-                categoryColor={this.categoryColor}
-              />
-            </div>
-          </div>
-          <div className="col-3">
-            <Participants 
-              participants={this.props.participants} 
-              addParticipant={this.props.addParticipant}
-            />
-            <MeetingResume resume={this.state.resume} />
-          </div>
+                  <MeetingResume resume={this.state.resume} />
+                  <button
+                    onClick={this.finishMeeting}
+                    className="btn btn-primary"
+                  >
+                    Terminar reunión
+                  </button>
+                </div>
+              </div>
+            :
+              <Redirect to='/meeting/finished'/>
+          }
+          <Switch>
+            <Route exact path='/meeting/finished' 
+                   render={() => this.renderFinishedMeeting()} 
+            /> 
+          </Switch>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }

@@ -45,17 +45,19 @@ class InitialSetup extends React.Component {
   }
 
   meeting() {
-    let categories = [];
-    if (this.state.selected_category != null) {
-      categories = this.state.selected_category.options;
+    if (this.state.start_meeting) {
+      let categories = [];
+      if (this.state.selected_category != null) {
+        categories = this.state.selected_category.options;
+      }
+      return <Meeting 
+              name={this.state.meeting_name}
+              target={this.state.meeting_target}
+              categories={categories} 
+              participants={this.state.participants}
+              addParticipant={this.addParticipant}
+             />
     }
-    return <Meeting 
-            name={this.state.meeting_name}
-            target={this.state.meeting_target}
-            categories={categories} 
-            participants={this.state.participants}
-            addParticipant={this.addParticipant}
-           />
   }
 
   setMeetingData(name, target) {

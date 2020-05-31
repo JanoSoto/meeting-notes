@@ -19,6 +19,7 @@ class NotesContainer extends React.Component {
                    deleteNote={this.props.deleteNote}
                    categoryColor={this.props.categoryColor}
                    deleted={false}
+                   showActions={true}
               /> 
     });
     return (
