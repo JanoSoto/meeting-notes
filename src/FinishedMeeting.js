@@ -1,6 +1,7 @@
 import React from 'react';
 import MeetingData from './MeetingData';
 import Note from './Note';
+import Chronometer from './Chronometer';
 
 class FinishedMeeting extends React.Component {
 
@@ -27,6 +28,14 @@ class FinishedMeeting extends React.Component {
           name={this.props.name} 
           target={this.props.target} 
         />
+        <div>
+          <p>
+            <strong>Duración: </strong>
+            <Chronometer 
+              startedAt={this.props.startedAt}
+            />
+          </p>
+        </div>
         <div>
           {notes}
         </div>

@@ -7,6 +7,7 @@ import NotesContainer from './NotesContainer';
 import NewNote from './NewNote';
 import DeletedNotes from './DeletedNotes';
 import FinishedMeeting from './FinishedMeeting';
+import Chronometer from './Chronometer';
 
 class Meeting extends React.Component {
   constructor(props) {
@@ -19,7 +20,9 @@ class Meeting extends React.Component {
         return hash;
       }, {}),
       show_deleted_notes: false,
-      finished: false
+      finished: false,
+      started_at: Date.now(),
+      finished_at: null
     }
 
     this.finishMeeting = this.finishMeeting.bind(this);
@@ -138,6 +141,7 @@ class Meeting extends React.Component {
              name={this.props.name}
              target={this.props.target}
              categoryColor={this.categoryColor}
+             startedAt={this.state.started_at}
            />
   }
 
@@ -196,6 +200,10 @@ class Meeting extends React.Component {
                     addParticipant={this.props.addParticipant}
                   />
                   <MeetingResume resume={this.state.resume} />
+                  <Chronometer 
+                    startedAt={this.state.started_at} 
+                    run={true}
+                  />
                   <button
                     onClick={this.finishMeeting}
                     className="btn btn-primary"
