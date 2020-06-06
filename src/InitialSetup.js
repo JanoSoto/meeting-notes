@@ -14,6 +14,7 @@ class InitialSetup extends React.Component {
       participants: [],
       meeting_name: '',
       meeting_target: '',
+      current_step: 0,
       categories: [
         {
           name: 'Acta dialógica',
@@ -61,7 +62,11 @@ class InitialSetup extends React.Component {
   }
 
   setMeetingData(name, target) {
-    this.setState({meeting_name: name, meeting_target: target});
+    this.setState({
+      meeting_name: name, 
+      meeting_target: target,
+      current_step: 1
+    });
   }
 
   startMeeting() {
@@ -69,12 +74,18 @@ class InitialSetup extends React.Component {
   }
 
   addParticipant(participant) {
-    this.setState({participants: this.state.participants.concat([participant])});
+    this.setState({
+      participants: this.state.participants.concat([participant]),
+      current_step: 2
+    });
   }
 
   setCategory(category) {
     const selected_category = this.state.categories.find(c => c.name === category);
-    this.setState({selected_category: selected_category});
+    this.setState({
+      selected_category: selected_category,
+      current_step: 3
+    });
   }
 
   changeCategory() {
@@ -90,41 +101,60 @@ class InitialSetup extends React.Component {
             <Redirect to='/meeting' />
             :
             <div className="new-meeting-container">
-              <h1>Crear una nueva reunión</h1>
-              <MeetingDataForm 
-                setMeetingData={this.setMeetingData}
-              />
-              <Participants 
-                participants={this.state.participants}
-                addParticipant={this.addParticipant}
-              />
-              {
-                this.state.selected_category == null ? 
-                <CategorySelector
-                  categories={this.state.categories}
-                  setCategory={this.setCategory}
+              <h1>Empezar una reunión</h1>
+              <div className="step-container">
+                <MeetingDataForm 
+                  setMeetingData={this.setMeetingData}
                 />
-                :
-                <div>
-                  <h2>Tipo de notas</h2>
-                  <button
-                    className="btn btn-primary"
-                    onClick={this.changeCategory}
-                  >
-                    Cambiar selección
-                  </button>
-                  <CategoryOption
-                    name={this.state.selected_category.name}
-                    options={this.state.selected_category.options}
+                {
+                  this.state.current_step > 0 ?
+                  <Participants 
+                    participants={this.state.participants}
+                    addParticipant={this.addParticipant}
                   />
+                  :
+                  null
+                }
+                {
+                  this.state.current_step > 1 ?
+                    this.state.selected_category == null ? 
+                    <CategorySelector
+                      categories={this.state.categories}
+                      setCategory={this.setCategory}
+                    />
+                    :
+                    <div className="component-container">
+                      <h2>
+                        Tipo de notas
+                        <span 
+                          className="material-icons"
+                          onClick={this.changeCategory}
+                        >
+                          edit
+                        </span>
+                      </h2>
+                      <CategoryOption
+                        name={this.state.selected_category.name}
+                        options={this.state.selected_category.options}
+                      />
+                    </div>
+                  :
+                    null
+                }
+              </div>
+              {
+                this.state.current_step > 2 ?
+                <div className="start-meeting-container">
+                  <button 
+                    onClick={this.startMeeting}
+                    className="btn btn-primary"
+                  >
+                    Empezar reunión
+                  </button>
                 </div>
+                :
+                null
               }
-              <button 
-                onClick={this.startMeeting}
-                className="btn btn-primary"
-              >
-                Empezar reunión
-              </button>
             </div>
           }
           <Switch>

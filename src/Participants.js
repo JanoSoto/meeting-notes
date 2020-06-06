@@ -14,7 +14,7 @@ class Participants extends React.Component {
       return <li key={i}>{name}</li>
     });
   	return (
-      <div className="participants-container">
+      <div className="component-container participants-container">
         <h2>Participantes</h2>
         {
           participants.length > 0 ? 

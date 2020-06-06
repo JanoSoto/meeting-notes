@@ -21,8 +21,8 @@ class CategorySelector extends React.Component {
              />
     });
     return (
-      <div>
-        <h2>Seleccione los tipos de notas para la reunión</h2>
+      <div className="component-container">
+        <h2>Tipos de notas</h2>
         {categories}
       </div>
     )

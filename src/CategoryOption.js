@@ -17,18 +17,20 @@ class CategoryOption extends React.Component {
     });
     return (
       <div>
-        <h4>{this.props.name}</h4>
-        {
-          this.props.to_select ? 
-          <button 
-            className="btn btn-primary"
-            onClick={this.handleClick}
-          >
-            Seleccionar
-          </button>
-          :
-          ''
-        }
+        <h4>
+          {this.props.name}
+          {
+            this.props.to_select ? 
+            <button 
+              className="btn btn-primary btn-sm"
+              onClick={this.handleClick}
+            >
+              Seleccionar
+            </button>
+            :
+            null
+          }
+        </h4>
         <ol>
           {options}
         </ol>

@@ -44,17 +44,24 @@ class MeetingDataForm extends React.Component {
 
   render () {
     return (
-      <div className="meeting-data-form-container">
-        <h2>Datos de la reunión</h2>
+      <div className="component-container meeting-data-form-container">
+        <h2>
+          Datos de la reunión
+          {
+            this.state.saved ?
+            <span 
+              className="material-icons"
+              onClick={this.handleClick}
+            >
+              edit
+            </span>
+            :
+            null
+          }
+        </h2>
         {
           this.state.saved ? 
           <div>
-            <button 
-              className="btn btn-primary" 
-              onClick={this.handleClick}
-            >
-              Editar
-            </button>
             <MeetingData 
               name={this.state.name}
               target={this.state.target}

@@ -1,5 +1,155 @@
 body {
   padding: 30px;
+  background-color: #F9F9F9;
+  color: #3F3F3F;
+}
+
+header {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  box-shadow: 0px 5px 10px -5px rgba(0,0,0,0.75);
+  padding: 30px 0;
+  margin-right: -30px;
+  margin-left: -30px;
+  margin-top: -30px;
+  background-color: #FFF;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 21px;
+}
+
+h6 {
+  font-size: 18px;
+}
+
+p {
+  font-size: 16px;
+}
+
+.btn {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  box-shadow: 5px 5px 5px -5px rgba(0,0,0,0.75);
+}
+
+.btn-sm {
+  padding: 5px 10px;
+}
+
+.float-right {
+  float: right;
+}
+
+.component-container {
+  background-color: #FFF;
+  margin: 30px 15px;
+  padding: 20px 30px;
+  box-shadow: 10px 10px 15px -10px rgba(0,0,0,0.75);
+
+  h2 {
+    margin: 0 -30px;
+    margin-bottom: 15px;
+    padding: 0 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #F9F9F9;
+  }
+}
+
+form {
+  .form-group {
+    margin-bottom: 20px;
+
+    label {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  }
+  
+  .form-actions {
+    input, button {
+      margin-right: 30px;
+    }
+  }
+}
+
+.new-meeting-container {
+  h1 {
+    padding-left: 10px;
+  }
+
+  .start-meeting-container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 45px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .step-container {
+    display: flex;
+
+    .component-container {
+      width: 30%;
+    }
+  }
+}
+
+h2 {
+  span {
+    float: right;
+    color: #0062cc;
+    cursor: pointer;
+    position: absolute;
+    margin-left: 10px;
+  }
+}
+
+h4 {
+  .btn {
+    float: right;
+  }
+}
+
+.meeting-data-container {
+  div {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    p {
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 0;
+      line-height: 1; 
+      font-size: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      line-height: 1; 
+      font-size: 16px;
+    }
+  }
 }
 
 .new-note-container {
@@ -33,21 +183,6 @@ body {
       .btn {
         margin-right: 10px;
       }
-    }
-  }
-}
-
-.meeting-data-container {
-  display: flex;
-  align-items: flex-end;
-
-  div {
-    margin-right: 30px;
-    margin-bottom: 15px;
-
-    h1, h3, p {
-      margin: 0;
-      line-height: 1;
     }
   }
 }

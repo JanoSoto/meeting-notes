@@ -51,41 +51,39 @@ class NewParticipant extends React.Component {
         {
           this.state.show_input ? 
           <form onSubmit={this.handleSubmit}>
-            <div className="form-row">
-              <div className="col-9">
-                <label>
-                  Nombre
-                </label>
-                <input 
-                  type="text" 
-                  name="name" 
-                  onChange={this.handleInputChange}
-                  autoFocus={true}
-                  className="form-control"
-                />
-                {
-                  this.state.empty_input ? 
-                  <p className="text-danger">
-                    Debes ingresar un nombre
-                  </p>
-                  : 
-                  ''
-                }
-              </div>
-              <div className="col-2">
-                <input 
-                  type="submit" 
-                  value="Agregar" 
-                  className="btn btn-primary"
-                />
-                <button 
-                  className="btn btn-danger"
-                  onClick={this.handleClick}
-                >
-                  Cerrar
-                </button>
-              </div>
-            </div>            
+            <div className="form-group">
+              <label>
+                Nombre
+              </label>
+              <input 
+                type="text" 
+                name="name" 
+                onChange={this.handleInputChange}
+                autoFocus={true}
+                className="form-control"
+              />
+              {
+                this.state.empty_input ? 
+                <p className="text-danger">
+                  Debes ingresar un nombre
+                </p>
+                : 
+                ''
+              }
+            </div>
+            <div className="form-actions">
+              <input 
+                type="submit" 
+                value="Agregar" 
+                className="btn btn-primary"
+              />
+              <button 
+                className="btn btn-danger"
+                onClick={this.handleClick}
+              >
+                Cerrar
+              </button>
+            </div>
           </form>
           :
           <div>
@@ -93,7 +91,7 @@ class NewParticipant extends React.Component {
               className="btn btn-primary"
               onClick={this.handleClick}
             >
-              Nuevo participante
+              Agregar participante
             </button>
           </div>
         }
