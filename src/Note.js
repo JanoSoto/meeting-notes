@@ -47,7 +47,7 @@ class Note extends React.Component {
              </option>
     });
     return  <form onSubmit={this.updateHandler}>
-              <div className="form-row note">
+              <div className="component-container form-row note">
                 <div className="col-1 id">{this.props.id}</div>
                 <div className="col-5">
                   <input 
@@ -90,7 +90,7 @@ class Note extends React.Component {
   }
 
   normalNote() {
-    return  <div className="row note">
+    return  <div className="component-container row note">
               <div className="col-1 id">{this.props.id}</div>
               <div className="col-5">
                 {this.props.summary}
@@ -140,6 +140,7 @@ class Note extends React.Component {
 
   componentDidMount() {
     // console.log(`Nota ${this.props.id} agregada al DOM`);
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   componentDidUpdate(prevProps, prevState) {

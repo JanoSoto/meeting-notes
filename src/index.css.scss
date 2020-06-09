@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   padding: 30px;
   background-color: #F9F9F9;
@@ -8,12 +12,12 @@ header {
   text-align: center;
   font-size: 28px;
   font-weight: bold;
+  background-color: #FFF;
   box-shadow: 0px 5px 10px -5px rgba(0,0,0,0.75);
   padding: 30px 0;
   margin-right: -30px;
   margin-left: -30px;
   margin-top: -30px;
-  background-color: #FFF;
 }
 
 h1 {
@@ -60,7 +64,7 @@ p {
 
 .component-container {
   background-color: #FFF;
-  margin: 30px 15px;
+  margin: 30px 0px;
   padding: 20px 30px;
   box-shadow: 10px 10px 15px -10px rgba(0,0,0,0.75);
 
@@ -84,8 +88,8 @@ form {
   }
   
   .form-actions {
-    input, button {
-      margin-right: 30px;
+    input:last-child, button:last-child {
+      margin-left: 30px;
     }
   }
 }
@@ -108,6 +112,7 @@ form {
 
     .component-container {
       width: 30%;
+      margin: 30px 15px;
     }
   }
 }
@@ -161,7 +166,7 @@ h4 {
 }
 
 .notes-container {
-  padding-top: 30px;
+  padding-top: 15px;
 
   .header {
     font-weight: bold;
@@ -184,5 +189,39 @@ h4 {
         margin-right: 10px;
       }
     }
+  }
+}
+
+.notes-container {
+  .component-container {
+    margin: 10px -15px;
+  }
+}
+
+.fixed-sidebar {
+  position: fixed;
+  top: 15%;
+  width: 20%;
+}
+
+.fixed-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  padding-left: 75px;
+  background-color: #FFF;
+  box-shadow: 0px 5px 10px -5px rgba(0,0,0,0.75);
+
+  p {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  h1 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 28px;
   }
 }

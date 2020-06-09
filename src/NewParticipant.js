@@ -4,7 +4,7 @@ class NewParticipant extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show_input: false,
+      show_input: props.showInput,
       empty_input: false,
       name: ''
     };

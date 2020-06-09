@@ -82,6 +82,7 @@ class InitialSetup extends React.Component {
 
   setCategory(category) {
     const selected_category = this.state.categories.find(c => c.name === category);
+    window.scrollTo(0, document.body.scrollHeight);
     this.setState({
       selected_category: selected_category,
       current_step: 3
@@ -110,6 +111,7 @@ class InitialSetup extends React.Component {
                   this.state.current_step > 0 ?
                   <Participants 
                     participants={this.state.participants}
+                    showInput={true}
                     addParticipant={this.addParticipant}
                   />
                   :

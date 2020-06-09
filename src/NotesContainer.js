@@ -27,18 +27,20 @@ class NotesContainer extends React.Component {
         {
           this.props.notes.length > 0 ?
             <div className="notes-container container">
-              <h2>Notas</h2>
-              <div className="row header">
-                <div className="col-1">#</div>
-                <div className="col-5">Resumen</div>
-                <div className="col-2">Tipo</div>
-                <div className="col-2">Responsable</div>
-                <div className="col-2"></div>
+              <div className="component-container">
+                <h2>Notas</h2>
+                <div className="row header">
+                  <div className="col-1">#</div>
+                  <div className="col-5">Resumen</div>
+                  <div className="col-2">Tipo</div>
+                  <div className="col-2">Responsable</div>
+                  <div className="col-2"></div>
+                </div>
               </div>
-              {notes.reverse()}
+              {notes}
             </div>
             : 
-            <p className="alert alert-info">No hay notas</p>
+            null
         }
       </div>
     )

@@ -28,7 +28,10 @@ class Participants extends React.Component {
             <p>Esta reunión aún no tiene participantes</p>
           </div>
         }
-        <NewParticipant addParticipant={this.props.addParticipant}/>
+        <NewParticipant 
+          addParticipant={this.props.addParticipant}
+          showInput={this.props.showInput}
+        />
       </div>
     )
   }

@@ -146,81 +146,99 @@ class Meeting extends React.Component {
            />
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     return (
       <BrowserRouter>
-        <div className="container">
-          {
-            !this.state.finished ? 
-              <div className="row">
-                <div className="col-9">
-                  <div>
-                    <MeetingData 
-                      name={this.props.name} 
-                      target={this.props.target} 
-                    />
+        <div>
+          <div className="fixed-header hidden">
+            <p>
+              Reunión
+            </p>
+            <h1>
+              {this.props.name}
+            </h1>
+          </div>
+          <div className="container">
+            {
+              !this.state.finished ? 
+                <div className="row">
+                  <div className="col-9">
+                    <div className="component-container">
+                      <h2>Datos de la reunión</h2>
+                      <MeetingData 
+                        name={this.props.name} 
+                        target={this.props.target} 
+                      />
+                    </div>
+                    
+                    <div>
+                      {
+                        this.state.deleted_notes.length > 0 ? 
+                          this.deleteNotesButton()
+                          :
+                          null
+                      }
+                      {
+                        this.state.show_deleted_notes ?
+                          <DeletedNotes
+                            notes={this.state.deleted_notes}
+                            restoreNote={this.restoreNote}
+                            categoryColor={this.categoryColor}
+                          />
+                          :
+                          <span></span>
+                      }
+                      <NotesContainer 
+                        notes={this.state.notes}
+                        categories={this.props.categories} 
+                        participants={this.props.participants}
+                        addNote={this.addNote}
+                        updateNote={this.updateNote}
+                        deleteNote={this.deleteNote}
+                        categoryColor={this.categoryColor}
+                      />
+                      <NewNote 
+                        categories={this.props.categories} 
+                        participants={this.props.participants}
+                        addNote={this.addNote}
+                        clean={true}
+                      />
+                    </div>
                   </div>
-                  
-                  <div>
-                    <NewNote 
-                      categories={this.props.categories} 
-                      participants={this.props.participants}
-                      addNote={this.addNote}
-                      clean={true}
+                  <div className="col-3">
+                    <Participants 
+                      participants={this.props.participants} 
+                      addParticipant={this.props.addParticipant}
+                      showInput={false}
                     />
-                    {
-                      this.state.deleted_notes.length > 0 ? 
-                        this.deleteNotesButton()
-                        :
-                        null
-                    }
-                    {
-                      this.state.show_deleted_notes ?
-                        <DeletedNotes
-                          notes={this.state.deleted_notes}
-                          restoreNote={this.restoreNote}
-                          categoryColor={this.categoryColor}
-                        />
-                        :
-                        <span></span>
-                    }
-                    <NotesContainer 
-                      notes={this.state.notes}
-                      categories={this.props.categories} 
-                      participants={this.props.participants}
-                      addNote={this.addNote}
-                      updateNote={this.updateNote}
-                      deleteNote={this.deleteNote}
-                      categoryColor={this.categoryColor}
-                    />
+                    <div className="component-container resume-container">
+                      <MeetingResume resume={this.state.resume} />
+                      <Chronometer 
+                        startedAt={this.state.started_at} 
+                        run={true}
+                      />
+                      <button
+                        onClick={this.finishMeeting}
+                        className="btn btn-primary"
+                      >
+                        Terminar reunión
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div className="col-3">
-                  <Participants 
-                    participants={this.props.participants} 
-                    addParticipant={this.props.addParticipant}
-                  />
-                  <MeetingResume resume={this.state.resume} />
-                  <Chronometer 
-                    startedAt={this.state.started_at} 
-                    run={true}
-                  />
-                  <button
-                    onClick={this.finishMeeting}
-                    className="btn btn-primary"
-                  >
-                    Terminar reunión
-                  </button>
-                </div>
-              </div>
-            :
-              <Redirect to='/meeting/finished'/>
-          }
-          <Switch>
-            <Route exact path='/meeting/finished' 
-                   render={() => this.renderFinishedMeeting()} 
-            /> 
-          </Switch>
+              :
+                <Redirect to='/meeting/finished'/>
+            }
+            <Switch>
+              <Route exact path='/meeting/finished' 
+                     render={() => this.renderFinishedMeeting()} 
+              /> 
+            </Switch>
+          </div>
         </div>
       </BrowserRouter>
     );

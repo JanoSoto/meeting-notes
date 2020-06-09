@@ -70,7 +70,7 @@ class NewNote extends React.Component {
              </option>
     });
     return (
-      <div className="new-note-container">
+      <div className="component-container new-note-container">
         <h2>Nueva nota</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-row">
