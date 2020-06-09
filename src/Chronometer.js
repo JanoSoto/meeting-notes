@@ -9,12 +9,15 @@ class Chronometer extends React.Component {
 
     this.startTimer = this.startTimer.bind(this);
     this.addZero = this.addZero.bind(this);
+    this.intervalTimer = this.intervalTimer.bind(this);
+  }
+
+  intervalTimer() {
+    this.setState({current_time: Date.now()});
   }
 
   startTimer() {
-    setInterval(() => {
-      this.setState({current_time: Date.now()});
-    }, 1000);
+    setInterval(this.intervalTimer, 1000);
   }
 
   addZero(number) {
@@ -25,6 +28,13 @@ class Chronometer extends React.Component {
     if (this.props.run) {
       this.startTimer();
     }
+    else {
+      clearInterval(this.intervalTimer);
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.setChronometerTimer(this.intervalTimer);
   }
 
   render() {

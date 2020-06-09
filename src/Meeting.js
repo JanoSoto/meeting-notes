@@ -22,11 +22,13 @@ class Meeting extends React.Component {
       show_deleted_notes: false,
       finished: false,
       started_at: Date.now(),
-      finished_at: null
+      finished_at: null,
+      interval_timer: null
     }
 
     this.finishMeeting = this.finishMeeting.bind(this);
     this.renderFinishedMeeting = this.renderFinishedMeeting.bind(this);
+    this.setChronometerTimer = this.setChronometerTimer.bind(this);
   }
 
   incrementCategory = (category) => {
@@ -143,11 +145,19 @@ class Meeting extends React.Component {
              categoryColor={this.categoryColor}
              startedAt={this.state.started_at}
              resume={this.state.resume}
-           />
+           />;
   }
 
   componentDidMount() {
     window.scrollTo(0, 0);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.interval_timer);
+  }
+
+  setChronometerTimer(timer) {
+    this.setState({interval_timer: timer});
   }
 
   render() {
@@ -220,6 +230,7 @@ class Meeting extends React.Component {
                       <Chronometer 
                         startedAt={this.state.started_at} 
                         run={true}
+                        setChronometerTimer={this.setChronometerTimer}
                       />
                       <button
                         onClick={this.finishMeeting}
