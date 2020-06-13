@@ -76,7 +76,7 @@ class InitialSetup extends React.Component {
   addParticipant(participant) {
     this.setState({
       participants: this.state.participants.concat([participant]),
-      current_step: 2
+      current_step: this.state.current_step < 3 ? 2 : this.state.current_step
     });
   }
 

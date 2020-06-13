@@ -12,19 +12,37 @@ function DeletedNotes(props) {
                    categoryColor={props.categoryColor}
                    restoreNote={props.restoreNote}
                    deleted={true}
+                   showActions={true}
               /> 
   });
   return (
-    <div className="notes-container container">
-      <h2>Notas eliminadas</h2>
-      <div className="row header">
-        <div className="col-1">#</div>
-        <div className="col-5">Resumen</div>
-        <div className="col-2">Tipo</div>
-        <div className="col-2">Responsable</div>
-        <div className="col-2"></div>
+    <div className="deleted-notes-container">
+    {
+      props.notes.length > 0 ?
+      <div className="notes-container container">
+        <div className="component-container">
+          <h2>
+            Notas eliminadas
+            <button 
+              className="btn btn-sm btn-primary"
+              onClick={props.hideDeletedNotes}
+            >
+              <i className="fas fa-times"></i>
+            </button>
+          </h2>
+          <div className="row header">
+            <div className="col-1">#</div>
+            <div className="col-5">Resumen</div>
+            <div className="col-2">Tipo</div>
+            <div className="col-2">Responsable</div>
+            <div className="col-2"></div>
+          </div>
+        </div>
+        {notes}
       </div>
-      {notes}
+      :
+      null
+    }
     </div>
   )  
 }

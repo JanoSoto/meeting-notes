@@ -20,11 +20,12 @@ window.onscroll = () => {
   if (resume_container) {
     if (window.scrollY > 250) {
       resume_container.classList.add('fixed-sidebar');
+      resume_header.classList.remove('fade-out');
       resume_header.classList.remove('hidden');
     }
     else {
       resume_container.classList.remove('fixed-sidebar');
-      resume_header.classList.add('hidden');
+      resume_header.classList.add('fade-out');
     }
   }
 }

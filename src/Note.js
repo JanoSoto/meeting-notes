@@ -4,7 +4,8 @@ class Note extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editable: false
+      editable: false,
+      fade_out: false
     }
   }
 
@@ -13,7 +14,8 @@ class Note extends React.Component {
   }
 
   deleteHandler = () => {
-    this.props.deleteNote(this.props.id);
+    this.setState({fade_out: true});
+    setInterval(this.props.deleteNote(this.props.id), 1000);
   }
 
   updateHandler = (e) => {
@@ -90,7 +92,7 @@ class Note extends React.Component {
   }
 
   normalNote() {
-    return  <div className="component-container row note">
+    return  <div className={`component-container row note`}>
               <div className="col-1 id">{this.props.id}</div>
               <div className="col-5">
                 {this.props.summary}
@@ -108,11 +110,11 @@ class Note extends React.Component {
                     {
                       this.props.deleted ? 
                       <button
-                        className="btn btn-primary"
+                        className="btn btn-sm btn-primary"
                         onClick={() => this.props.restoreNote(this.props.id)}
                       >
                         <span>
-                          Deshacer <i className="fas fa-undo-alt"></i>
+                          <i className="fas fa-undo-alt"></i>
                         </span>
                       </button>
                       :
@@ -140,7 +142,9 @@ class Note extends React.Component {
 
   componentDidMount() {
     // console.log(`Nota ${this.props.id} agregada al DOM`);
-    window.scrollTo(0, document.body.scrollHeight);
+    if (!this.props.deleted) {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {

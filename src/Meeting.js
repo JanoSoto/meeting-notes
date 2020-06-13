@@ -97,17 +97,7 @@ class Meeting extends React.Component {
   }
 
   deleteNotesButton = () => {
-    if (this.state.show_deleted_notes) {
-      return  <button 
-                className="btn btn-warning"
-                onClick={this.toggleDeletedNotes}
-              >
-                Ocultar notas eliminadas  <span className="badge badge-dark">
-                                    {this.state.deleted_notes.length}
-                                  </span>
-              </button>
-    }
-    else {
+    if (!this.state.show_deleted_notes) {
       return  <button 
                 className="btn btn-warning"
                 onClick={this.toggleDeletedNotes}
@@ -198,6 +188,7 @@ class Meeting extends React.Component {
                             notes={this.state.deleted_notes}
                             restoreNote={this.restoreNote}
                             categoryColor={this.categoryColor}
+                            hideDeletedNotes={this.toggleDeletedNotes}
                           />
                           :
                           <span></span>
