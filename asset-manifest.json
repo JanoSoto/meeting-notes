@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/meeting-notes/static/css/main.d9728e14.chunk.css",
+    "main.js": "/meeting-notes/static/js/main.2fd8d499.chunk.js",
+    "main.js.map": "/meeting-notes/static/js/main.2fd8d499.chunk.js.map",
+    "runtime-main.js": "/meeting-notes/static/js/runtime-main.0d7ee8ba.js",
+    "runtime-main.js.map": "/meeting-notes/static/js/runtime-main.0d7ee8ba.js.map",
+    "static/css/2.5e4ff3cb.chunk.css": "/meeting-notes/static/css/2.5e4ff3cb.chunk.css",
+    "static/js/2.06079ec6.chunk.js": "/meeting-notes/static/js/2.06079ec6.chunk.js",
+    "static/js/2.06079ec6.chunk.js.map": "/meeting-notes/static/js/2.06079ec6.chunk.js.map",
+    "index.html": "/meeting-notes/index.html",
+    "precache-manifest.169f89f29e92bd683821678273cfecfc.js": "/meeting-notes/precache-manifest.169f89f29e92bd683821678273cfecfc.js",
+    "service-worker.js": "/meeting-notes/service-worker.js",
+    "static/css/2.5e4ff3cb.chunk.css.map": "/meeting-notes/static/css/2.5e4ff3cb.chunk.css.map",
+    "static/css/main.d9728e14.chunk.css.map": "/meeting-notes/static/css/main.d9728e14.chunk.css.map",
+    "static/js/2.06079ec6.chunk.js.LICENSE.txt": "/meeting-notes/static/js/2.06079ec6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0d7ee8ba.js",
+    "static/css/2.5e4ff3cb.chunk.css",
+    "static/js/2.06079ec6.chunk.js",
+    "static/css/main.d9728e14.chunk.css",
+    "static/js/main.2fd8d499.chunk.js"
+  ]
+}
